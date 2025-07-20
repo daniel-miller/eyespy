@@ -1,0 +1,25 @@
+# Build outputs
+*.obj
+*.log
+*.pdb
+[Bb]in/
+[Dd]ebug/
+[Oo]bj/
+[Rr]elease/
+[Rr]eleases/
+[Dd]ist/
+
+# Node.js
+node_modules/
+
+# NuGet packages
+*.nupkg
+**/[Pp]ackages/
+
+# Temporary files
+[Tt]emp/
+[Tt]mp/
+
+# Visual Studio and VS Code
+.vs/
+.vscode/
