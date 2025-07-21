@@ -11,7 +11,7 @@ This is a small set of custom Roslyn analyzers to enforce coding standards for C
 1. **Add as NuGet Package Reference:**
    Add the analyzer project as a package reference to your target project:
    ```xml
-   <PackageReference Include="EyeSpy" Version="1.0.0">
+   <PackageReference Include="EyeSpy" Version="1.0.5">
      <PrivateAssets>all</PrivateAssets>
      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
    </PackageReference>
@@ -71,24 +71,24 @@ public string LegacyUserID { get; set; }
 ## Requirements
 
 - **.NET Standard 2.0** or higher
-- **Microsoft.CodeAnalysis.CSharp 4.13.0**
-- **Microsoft.CodeAnalysis.Analyzers 3.11.0**
+- **Microsoft.CodeAnalysis.CSharp 4.14.0**
+- **Microsoft.CodeAnalysis.Analyzers 4.14.0**
 
 ## Development
 
 To extend or modify these analyzers:
 
 1. Clone the repository
-2. Open in Visual Studio or your preferred IDE
+2. Open in VS Code or your preferred IDE
 3. Add new analyzer classes following the existing patterns
-4. Update diagnostic IDs (use SPYXX format)
+4. Update diagnostic codes (use SPYXX format)
 5. Add corresponding tests
 6. Update this README with new analyzer documentation
 
 ## Testing
 
-Test your analyzers using the Microsoft.CodeAnalysis.Testing framework or by adding them to a test project and verifying the expected diagnostics are generated.
+Test your analyzers using the Microsoft.CodeAnalysis.Testing framework or by adding them to the TestDiagnostics project to verify the expected diagnostics are triggered.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

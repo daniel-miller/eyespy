@@ -15,7 +15,7 @@ namespace EyeSpy
         private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
             id: DiagnosticId,
             title: "Async method call must be awaited",
-            messageFormat: "Method '{0}' returns a Task but is not awaited",
+            messageFormat: "Method '{0}' returns a Task but the await operator is missing",
             category: "Usage",
             defaultSeverity: DiagnosticSeverity.Error,
             isEnabledByDefault: true,

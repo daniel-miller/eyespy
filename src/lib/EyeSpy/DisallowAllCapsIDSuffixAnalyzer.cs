@@ -28,7 +28,11 @@ namespace EyeSpy
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
 
             // Fields, parameters, and properties can still be analyzed as symbols
-            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Field, SymbolKind.Parameter, SymbolKind.Property);
+            context.RegisterSymbolAction(AnalyzeSymbol,
+                SymbolKind.Field,
+                SymbolKind.Parameter,
+                SymbolKind.Property,
+                SymbolKind.Method);
 
             // Locals must be analyzed via syntax
             context.RegisterSyntaxNodeAction(AnalyzeLocalVariable, SyntaxKind.VariableDeclarator);

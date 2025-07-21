@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EyeSpy", "EyeSpy.csproj", "{EB40F646-38F0-48F8-3183-FE1EFAB8181E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDiagnostics", "TestDiagnostics.csproj", "{B6958F81-332E-E019-D64B-3ACBC3E99129}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,15 +10,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EB40F646-38F0-48F8-3183-FE1EFAB8181E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB40F646-38F0-48F8-3183-FE1EFAB8181E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB40F646-38F0-48F8-3183-FE1EFAB8181E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB40F646-38F0-48F8-3183-FE1EFAB8181E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6958F81-332E-E019-D64B-3ACBC3E99129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6958F81-332E-E019-D64B-3ACBC3E99129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6958F81-332E-E019-D64B-3ACBC3E99129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6958F81-332E-E019-D64B-3ACBC3E99129}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6E8CE927-0221-4762-A11A-2E6FDE7F799E}
+		SolutionGuid = {941FBA4C-4AF5-49D8-81E3-3BFC01F532CC}
 	EndGlobalSection
 EndGlobal

@@ -26,9 +26,7 @@ namespace EyeSpy
         public override void Initialize(AnalysisContext context)
         {
             context.EnableConcurrentExecution();
-
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-
             context.RegisterSyntaxTreeAction(AnalyzeSyntaxTree);
         }
 
@@ -36,22 +34,33 @@ namespace EyeSpy
         {
             var root = context.Tree.GetCompilationUnitRoot(context.CancellationToken);
 
-            var topLevelClasses = root.Members
-                .OfType<NamespaceDeclarationSyntax>()
-                .SelectMany(ns => ns.Members.OfType<ClassDeclarationSyntax>())
-                .Concat(
-                    root.Members
-                        .OfType<ClassDeclarationSyntax>() // for global-scope classes
-                )
-                .Where(cls => cls.Parent is NamespaceDeclarationSyntax || cls.Parent is CompilationUnitSyntax)
+            // Get all top-level classes
+            var topLevelClasses = root.DescendantNodes()
+                .OfType<ClassDeclarationSyntax>()
+                .Where(IsTopLevelClass)
                 .ToList();
 
+            // Report diagnostic for each class after the first one
             if (topLevelClasses.Count > 1)
             {
-                var location = topLevelClasses[1].GetLocation(); // flag the second class
-
-                context.ReportDiagnostic(Diagnostic.Create(Rule, location));
+                for (int i = 1; i < topLevelClasses.Count; i++)
+                {
+                    var cls = topLevelClasses[i];
+                    var location = cls.Identifier.GetLocation();
+                    context.ReportDiagnostic(Diagnostic.Create(Rule, location));
+                }
             }
+        }
+
+        private static bool IsTopLevelClass(ClassDeclarationSyntax classDeclaration)
+        {
+            // A class is top-level if its parent is:
+            // 1. CompilationUnitSyntax (directly in file, no namespace)
+            // 2. NamespaceDeclarationSyntax (traditional block namespace)
+            // 3. FileScopedNamespaceDeclarationSyntax (file-scoped namespace)
+            return classDeclaration.Parent is CompilationUnitSyntax ||
+                   classDeclaration.Parent is NamespaceDeclarationSyntax ||
+                   classDeclaration.Parent is FileScopedNamespaceDeclarationSyntax;
         }
     }
 }
