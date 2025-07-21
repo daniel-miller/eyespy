@@ -1,10 +1,10 @@
-# EyeSpy C# Code Analyzer
+# EyeSpy: A static code analysis library for C#
 
 This is a small set of custom Roslyn analyzers to enforce coding standards for C# projects. These analyzers provide compile-time errors to help maintain code quality and consistency.
 
-## Analyzers Included
+## Diagnostic Analyzers
 
-Here is a list of the analyzers currently implemented in this library.
+Here is a list of the analyzers implemented in this library.
 
 ---
 
@@ -162,8 +162,7 @@ public class SecondClass { } // No error
 
 Use `SuppressMessage` attribute for specific suppressions:
 ```csharp
-[SuppressMessage("Naming", "SPY02:Avoid 'ID' suffix; use 'Id'", 
-    Justification = "Legacy API compatibility")]
+[SuppressMessage("Naming", "SPY02:Avoid 'ID' suffix; use 'Id'", Justification = "Legacy compatibility")]
 public string LegacyUserID { get; set; }
 ```
 
