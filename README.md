@@ -4,7 +4,106 @@ This is a small set of custom Roslyn analyzers to enforce coding standards for C
 
 ## Analyzers Included
 
+Here is a list of the analyzers currently implemented in this library.
 
+---
+
+### SPY01: Disallow multiple top-level classes in the same file
+
+Each C# file should contain **only one top-level class declaration**. Placing multiple classes in a single file can lead to maintainability issues and violates widely accepted conventions.
+
+**Example:**
+
+```csharp
+public class FirstClass { }
+
+public class SecondClass { } // ❌ Move SecondClass to a separate file
+```
+
+Keeping one class per file improves traceability and simplifies version control diffs—especially in large teams or open-source projects.
+
+---
+
+### SPY02: Disallow "ID" as an identifier name suffix
+
+Use `Id` instead of `ID` to comply with .NET naming conventions. This enhances readability and aligns with idiomatic C# standards.
+
+**Examples:**
+
+```csharp
+public int UserID { get; set; }        // ❌ Should be UserId
+private string customerID;             // ❌ Should be customerId
+void ProcessOrder(int orderID) { }     // ❌ Should be orderId
+```
+
+This rule is cosmetic but contributes to cleaner, more uniform code—especially beneficial in APIs, domain models, and shared libraries.
+
+---
+
+### SPY03: Async method names must have Async suffix
+
+Async methods **must end with the `Async` suffix**. This is a standard convention that clearly signals asynchronous behavior to developers.
+
+**Examples:**
+
+```csharp
+public async Task ProcessData() { }      // ❌ Should be ProcessDataAsync
+public async Task<string> GetUser() { }  // ❌ Should be GetUserAsync
+```
+
+This convention helps prevent confusion when synchronous and asynchronous methods coexist.
+
+---
+
+### SPY04: Namespace hierarchy must align to folder structure
+
+A file’s namespace should reflect its folder structure to support intuitive project organization and navigation.
+
+**Examples:**
+
+Assume the file path is:
+
+```
+C:\Projects\MyApp\Controllers\Api\UserController.cs
+```
+
+Valid namespaces:
+
+```csharp
+namespace MyApp.Controllers.Api    // ✅
+namespace MyApp.Controllers        // ✅
+namespace MyApp                    // ✅
+```
+
+Invalid examples:
+
+```csharp
+namespace Controllers.Api          // ❌ Missing project root
+namespace Foo.Bar                  // ❌ Entirely mismatched
+namespace MyApp.Services           // ❌ Diverges from folder structure
+```
+
+This alignment improves onboarding, searchability, and long-term maintainability. While tools like VS Code and Visual Studio support similar rules (e.g., IDE0130), this rule allows for more flexibility in shallow namespace declarations.
+
+---
+
+### SPY05: Async calls must be awaited
+
+Un-awaited async calls are a common source of bugs. Always `await` async methods to ensure proper exception handling and task completion.
+
+**Example:**
+
+```csharp
+public async Task ProcessDataAsync()
+{
+    WorkAsync();               // ❌ Should be: await WorkAsync();
+    var result = WorkAsync();  // ❌ Should be: var result = await WorkAsync();
+}
+```
+
+This rule reduces the likelihood of dropped tasks and makes the async control flow explicit and reliable.
+
+---
 
 ## Installation
 
